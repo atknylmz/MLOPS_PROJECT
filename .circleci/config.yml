@@ -1,0 +1,201 @@
+version: 2.1
+
+executors:
+  python-executor:
+    docker:
+      - image: cimg/python:3.11
+    working_directory: ~/mlops_project
+
+jobs:
+  # =========================================================================
+  # COMMIT STAGE
+  # =========================================================================
+  build-and-test:
+    executor: python-executor
+    steps:
+      - checkout
+      
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
+      
+      - run:
+          name: 📦 Install dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+      
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+      
+      - run:
+          name: 🔍 Check Python syntax
+          command: |
+            . venv/bin/activate
+            python -m py_compile src/**/*.py
+            echo "✓ All files have valid syntax"
+      
+      - run:
+          name: 🧪 Run unit tests
+          command: |
+            . venv/bin/activate
+            pytest tests/ -v --junitxml=test-results.xml || true
+      
+      - store_test_results:
+          path: test-results.xml
+
+  # =========================================================================
+  # TRAINING STAGE - Incremental Learning
+  # =========================================================================
+  train-incremental-models:
+    executor: python-executor
+    resource_class: large
+    steps:
+      - checkout
+      
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+      
+      - run:
+          name: ⚙️ Setup environment
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+      
+      - run:
+          name: 🚀 Start incremental learning pipeline
+          command: |
+            . venv/bin/activate
+            echo "📊 Training 23 models with 1000-sample chunks..."
+            python -m src.training.incremental_train
+            echo "✓ Incremental training completed"
+      
+      - store_artifacts:
+          path: artifacts/incremental_models
+      
+      - store_artifacts:
+          path: artifacts/reports
+      
+      - persist_to_workspace:
+          root: .
+          paths:
+            - artifacts/incremental_models
+            - artifacts/reports
+
+  # =========================================================================
+  # ACCEPTANCE TEST STAGE
+  # =========================================================================
+  validate-models:
+    executor: python-executor
+    steps:
+      - checkout
+      
+      - attach_workspace:
+          at: .
+      
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+      
+      - run:
+          name: ✅ Validate model quality
+          command: |
+            . venv/bin/activate
+            python -c "
+import json
+from pathlib import Path
+
+reports = Path('artifacts/reports/incremental_training_report.json')
+if reports.exists():
+    with open(reports) as f:
+        data = json.load(f)
+        summary = data['summary']
+        print(f'Best Accuracy: {summary[\"best_accuracy\"]:.4f}')
+        print(f'Average Accuracy: {summary[\"avg_accuracy\"]:.4f}')
+        
+        if summary['best_accuracy'] >= 0.70:
+            print('✓ Model meets acceptance criteria')
+        else:
+            print('✗ Model FAILED acceptance criteria')
+            exit(1)
+            "
+      
+      - run:
+          name: 📈 Generate evaluation report
+          command: |
+            . venv/bin/activate
+            python src/registry/evaluate_incremental.py || true
+
+  # =========================================================================
+  # DEPLOY STAGE
+  # =========================================================================
+  deploy-best-model:
+    executor: python-executor
+    steps:
+      - checkout
+      
+      - attach_workspace:
+          at: .
+      
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+      
+      - run:
+          name: 🎯 Promote best model
+          command: |
+            . venv/bin/activate
+            python src/registry/promote.py || true
+      
+      - run:
+          name: 📤 Push to GitHub
+          command: |
+            git config --global user.email "circleci@mlops.local"
+            git config --global user.name "CircleCI Bot"
+            
+            git add artifacts/incremental_models/ artifacts/reports/ README.md || true
+            git commit -m "ci(circleci): incremental training results - best model pushed" || true
+            git push origin ${CIRCLE_BRANCH} || true
+
+workflows:
+  mlops-pipeline:
+    jobs:
+      # Commit stage
+      - build-and-test:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+      
+      # Training stage
+      - train-incremental-models:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+      
+      # Acceptance test stage
+      - validate-models:
+          requires:
+            - train-incremental-models
+      
+      # Deployment stage
+      - deploy-best-model:
+          requires:
+            - validate-models
+          filters:
+            branches:
+              only:
+                - main

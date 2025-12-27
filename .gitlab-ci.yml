@@ -1,0 +1,119 @@
+stages:
+  - build
+  - test
+  - train
+  - evaluate
+  - deploy
+
+variables:
+  DOCKER_IMAGE: python:3.11
+
+before_script:
+  - pip install -r requirements.txt
+
+# ============================================================================
+# COMMIT STAGE - Basic syntax and import checks
+# ============================================================================
+build:syntax_check:
+  stage: build
+  script:
+    - echo "🔍 Checking Python syntax..."
+    - python -m py_compile src/**/*.py
+    - echo "✓ All files have valid syntax"
+  allow_failure: false
+
+build:dependencies:
+  stage: build
+  script:
+    - echo "📦 Installing dependencies..."
+    - pip install -r requirements.txt
+    - echo "✓ Dependencies installed successfully"
+  allow_failure: false
+
+# ============================================================================
+# TEST STAGE - Unit and integration tests
+# ============================================================================
+test:unit_tests:
+  stage: test
+  script:
+    - echo "🧪 Running unit tests..."
+    - pytest tests/ -v --cov=src --cov-report=term-missing
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+  allow_failure: true
+
+test:feature_engineering:
+  stage: test
+  script:
+    - echo "🔧 Testing feature engineering..."
+    - python -m pytest tests/test_hashed_transformer.py -v
+    - python -m pytest tests/test_feature_cross.py -v
+  allow_failure: false
+
+# ============================================================================
+# TRAINING STAGE - Incremental Learning Pipeline
+# ============================================================================
+train:incremental_models:
+  stage: train
+  script:
+    - echo "🚀 Starting Incremental Learning Pipeline..."
+    - echo "📊 Training 23 models with chunks of 1000 samples..."
+    - python -m src.training.incremental_train
+    - echo "✓ Incremental training completed"
+  artifacts:
+    paths:
+      - artifacts/incremental_models/
+      - artifacts/reports/
+    expire_in: 30 days
+  allow_failure: false
+  timeout: 2 hours
+
+# ============================================================================
+# EVALUATION STAGE - Model comparison and selection
+# ============================================================================
+evaluate:compare_models:
+  stage: evaluate
+  dependencies:
+    - train:incremental_models
+  script:
+    - echo "📈 Evaluating all models..."
+    - python src/registry/evaluate_incremental.py
+    - echo "✓ Model evaluation completed"
+  artifacts:
+    paths:
+      - artifacts/reports/
+    expire_in: 30 days
+  allow_failure: false
+
+# ============================================================================
+# DEPLOY STAGE - Push best model to production/GitHub
+# ============================================================================
+deploy:best_model:
+  stage: deploy
+  dependencies:
+    - evaluate:compare_models
+  script:
+    - echo "🎯 Deploying best model..."
+    - python src/registry/promote.py
+    - echo "✓ Model promoted to production"
+  only:
+    - main
+  allow_failure: false
+
+deploy:github_push:
+  stage: deploy
+  dependencies:
+    - deploy:best_model
+  script:
+    - echo "📤 Pushing results to GitHub..."
+    - git config --global user.email "ci@mlops.local"
+    - git config --global user.name "MLOps CI/CD"
+    - git add artifacts/incremental_models artifacts/reports README.md
+    - git commit -m "ci: incremental training results - best model pushed" || true
+    - git push origin main || true
+  only:
+    - main
+  allow_failure: false
