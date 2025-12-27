@@ -1,0 +1,386 @@
+{
+  "project": "Manufacturing Defect Detection - Incremental Learning",
+  "total_chunks": 23,
+  "chunk_size": 1000,
+  "total_samples": 23490,
+  "models": [
+    {
+      "chunk_id": 1,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 1000,
+      "test_samples": 200,
+      "metrics": {
+        "accuracy": 0.71,
+        "precision": 0.2708333333333333,
+        "recall": 0.3611111111111111,
+        "f1": 0.30952380952380953
+      },
+      "previous_accuracy": 0.0,
+      "is_improvement": true,
+      "status": "production"
+    },
+    {
+      "chunk_id": 2,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 2000,
+      "test_samples": 400,
+      "metrics": {
+        "accuracy": 0.6675,
+        "precision": 0.22641509433962265,
+        "recall": 0.32,
+        "f1": 0.26519337016574585
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 3,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 3000,
+      "test_samples": 600,
+      "metrics": {
+        "accuracy": 0.6633333333333333,
+        "precision": 0.2441860465116279,
+        "recall": 0.3684210526315789,
+        "f1": 0.2937062937062937
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 4,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 4000,
+      "test_samples": 800,
+      "metrics": {
+        "accuracy": 0.6625,
+        "precision": 0.23873873873873874,
+        "recall": 0.34415584415584416,
+        "f1": 0.28191489361702127
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 5,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 5000,
+      "test_samples": 1000,
+      "metrics": {
+        "accuracy": 0.665,
+        "precision": 0.25622775800711745,
+        "recall": 0.36363636363636365,
+        "f1": 0.30062630480167013
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 6,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 6000,
+      "test_samples": 1200,
+      "metrics": {
+        "accuracy": 0.6616666666666666,
+        "precision": 0.2696629213483146,
+        "recall": 0.39669421487603307,
+        "f1": 0.3210702341137124
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 7,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 7000,
+      "test_samples": 1400,
+      "metrics": {
+        "accuracy": 0.6535714285714286,
+        "precision": 0.24120603015075376,
+        "recall": 0.34408602150537637,
+        "f1": 0.28360413589364847
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 8,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 8000,
+      "test_samples": 1600,
+      "metrics": {
+        "accuracy": 0.64125,
+        "precision": 0.23541666666666666,
+        "recall": 0.353125,
+        "f1": 0.2825
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 9,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 9000,
+      "test_samples": 1800,
+      "metrics": {
+        "accuracy": 0.6433333333333333,
+        "precision": 0.2430939226519337,
+        "recall": 0.36363636363636365,
+        "f1": 0.2913907284768212
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 10,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 10000,
+      "test_samples": 2000,
+      "metrics": {
+        "accuracy": 0.6345,
+        "precision": 0.2416,
+        "recall": 0.3700980392156863,
+        "f1": 0.29235237173281703
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 11,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 11000,
+      "test_samples": 2200,
+      "metrics": {
+        "accuracy": 0.65,
+        "precision": 0.25190839694656486,
+        "recall": 0.3707865168539326,
+        "f1": 0.3
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 12,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 12000,
+      "test_samples": 2400,
+      "metrics": {
+        "accuracy": 0.6416666666666667,
+        "precision": 0.2607594936708861,
+        "recall": 0.42738589211618255,
+        "f1": 0.3238993710691824
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 13,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 13000,
+      "test_samples": 2600,
+      "metrics": {
+        "accuracy": 0.6453846153846153,
+        "precision": 0.2607655502392344,
+        "recall": 0.41762452107279696,
+        "f1": 0.32106038291605304
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 14,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 14000,
+      "test_samples": 2800,
+      "metrics": {
+        "accuracy": 0.6321428571428571,
+        "precision": 0.2296983758700696,
+        "recall": 0.35106382978723405,
+        "f1": 0.2776998597475456
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 15,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 15000,
+      "test_samples": 3000,
+      "metrics": {
+        "accuracy": 0.6456666666666667,
+        "precision": 0.2594142259414226,
+        "recall": 0.41127694859038144,
+        "f1": 0.3181526619627967
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 16,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 16000,
+      "test_samples": 3200,
+      "metrics": {
+        "accuracy": 0.6453125,
+        "precision": 0.26082771896053897,
+        "recall": 0.42476489028213166,
+        "f1": 0.32319618366129993
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 17,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 17000,
+      "test_samples": 3400,
+      "metrics": {
+        "accuracy": 0.6341176470588236,
+        "precision": 0.2539130434782609,
+        "recall": 0.4306784660766962,
+        "f1": 0.31947483588621445
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 18,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 18000,
+      "test_samples": 3600,
+      "metrics": {
+        "accuracy": 0.6366666666666667,
+        "precision": 0.24676445211389128,
+        "recall": 0.39667128987517336,
+        "f1": 0.30425531914893617
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 19,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 19000,
+      "test_samples": 3800,
+      "metrics": {
+        "accuracy": 0.6421052631578947,
+        "precision": 0.25816733067729086,
+        "recall": 0.4302788844621514,
+        "f1": 0.32270916334661354
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 20,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 20000,
+      "test_samples": 4000,
+      "metrics": {
+        "accuracy": 0.63125,
+        "precision": 0.2410099464422341,
+        "recall": 0.39473684210526316,
+        "f1": 0.2992874109263658
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 21,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 21000,
+      "test_samples": 4200,
+      "metrics": {
+        "accuracy": 0.616904761904762,
+        "precision": 0.2297486033519553,
+        "recall": 0.39401197604790417,
+        "f1": 0.290251433612704
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 22,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 22000,
+      "test_samples": 4400,
+      "metrics": {
+        "accuracy": 0.6397727272727273,
+        "precision": 0.2532963219986121,
+        "recall": 0.41762013729977115,
+        "f1": 0.31533477321814257
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    },
+    {
+      "chunk_id": 23,
+      "total_chunks": 23,
+      "chunk_size": 1000,
+      "cumulative_samples": 23000,
+      "test_samples": 4600,
+      "metrics": {
+        "accuracy": 0.6293478260869565,
+        "precision": 0.2419672131147541,
+        "recall": 0.4019607843137255,
+        "f1": 0.30208759721653705
+      },
+      "previous_accuracy": 0.71,
+      "is_improvement": false,
+      "status": "local_only"
+    }
+  ],
+  "summary": {
+    "best_accuracy": 0.71,
+    "worst_accuracy": 0.616904761904762,
+    "avg_accuracy": 0.647521433039713,
+    "best_f1": 0.3238993710691824,
+    "worst_f1": 0.26519337016574585,
+    "avg_f1": 0.30170831020625777,
+    "improvements_count": 1,
+    "local_only_count": 22
+  }
+}

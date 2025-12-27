@@ -1,0 +1,162 @@
+{
+  "rows": 3240,
+  "columns": [
+    "ProductionVolume",
+    "ProductionCost",
+    "SupplierQuality",
+    "DeliveryDelay",
+    "DefectRate",
+    "QualityScore",
+    "MaintenanceHours",
+    "DowntimePercentage",
+    "InventoryTurnover",
+    "StockoutRate",
+    "WorkerProductivity",
+    "SafetyIncidents",
+    "EnergyConsumption",
+    "EnergyEfficiency",
+    "AdditiveProcessTime",
+    "AdditiveMaterialCost",
+    "DefectStatus",
+    "machine_id",
+    "operator_id",
+    "supplier_batch_id",
+    "production_line_id",
+    "machine_operator"
+  ],
+  "checks": {
+    "target_binary": true,
+    "null_rates": {
+      "ProductionVolume": 0.0,
+      "ProductionCost": 0.0,
+      "SupplierQuality": 0.0,
+      "DeliveryDelay": 0.0,
+      "DefectRate": 0.0,
+      "QualityScore": 0.0,
+      "MaintenanceHours": 0.0,
+      "DowntimePercentage": 0.0,
+      "InventoryTurnover": 0.0,
+      "StockoutRate": 0.0,
+      "WorkerProductivity": 0.0,
+      "SafetyIncidents": 0.0,
+      "EnergyConsumption": 0.0,
+      "EnergyEfficiency": 0.0,
+      "AdditiveProcessTime": 0.0,
+      "AdditiveMaterialCost": 0.0,
+      "DefectStatus": 0.0,
+      "machine_id": 0.0,
+      "operator_id": 0.0,
+      "supplier_batch_id": 0.0,
+      "production_line_id": 0.0,
+      "machine_operator": 0.0
+    },
+    "numeric_stats": {
+      "ProductionVolume": {
+        "min": 100.0,
+        "max": 999.0,
+        "mean": 548.5231481481482
+      },
+      "ProductionCost": {
+        "min": 5000.174521330492,
+        "max": 19993.365548756577,
+        "mean": 12423.018475584355
+      },
+      "SupplierQuality": {
+        "min": 80.00482009370269,
+        "max": 99.98921362119349,
+        "mean": 89.83328993231252
+      },
+      "DeliveryDelay": {
+        "min": 0.0,
+        "max": 5.0,
+        "mean": 2.5589506172839505
+      },
+      "DefectRate": {
+        "min": 0.5007098506012553,
+        "max": 4.998529423589416,
+        "mean": 2.749116379386996
+      },
+      "QualityScore": {
+        "min": 60.01009817962248,
+        "max": 99.99699307332706,
+        "mean": 80.13427211241357
+      },
+      "MaintenanceHours": {
+        "min": 0.0,
+        "max": 23.0,
+        "mean": 11.476543209876544
+      },
+      "DowntimePercentage": {
+        "min": 0.0016648394255397,
+        "max": 4.997590657077265,
+        "mean": 2.501373151490477
+      },
+      "InventoryTurnover": {
+        "min": 2.001611185074484,
+        "max": 9.998577322891654,
+        "mean": 6.019662017894819
+      },
+      "StockoutRate": {
+        "min": 2.0517960894972377e-06,
+        "max": 0.0999973867646256,
+        "mean": 0.050878234924041615
+      },
+      "WorkerProductivity": {
+        "min": 80.00496047416955,
+        "max": 99.99678580952808,
+        "mean": 90.04011546589835
+      },
+      "SafetyIncidents": {
+        "min": 0.0,
+        "max": 9.0,
+        "mean": 4.591666666666667
+      },
+      "EnergyConsumption": {
+        "min": 1000.7201559358512,
+        "max": 4997.074740785263,
+        "mean": 2988.4944533650983
+      },
+      "EnergyEfficiency": {
+        "min": 0.1002379032170629,
+        "max": 0.4994998046638267,
+        "mean": 0.2997759857284548
+      },
+      "AdditiveProcessTime": {
+        "min": 1.0001506263214126,
+        "max": 9.99974932631184,
+        "mean": 5.472098134922076
+      },
+      "AdditiveMaterialCost": {
+        "min": 100.21113747433294,
+        "max": 499.98278174750806,
+        "mean": 299.51547899801164
+      },
+      "DefectStatus": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8404320987654321
+      },
+      "machine_id": {
+        "min": 1.0,
+        "max": 4997.0,
+        "mean": 1908.2398148148147
+      },
+      "operator_id": {
+        "min": 1.0,
+        "max": 2000.0,
+        "mean": 832.4373456790123
+      },
+      "supplier_batch_id": {
+        "min": 12.0,
+        "max": 9999.0,
+        "mean": 4063.4324074074075
+      },
+      "production_line_id": {
+        "min": 1.0,
+        "max": 300.0,
+        "mean": 150.00277777777777
+      }
+    }
+  },
+  "success": true
+}

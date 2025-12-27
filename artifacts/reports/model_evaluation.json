@@ -1,0 +1,17 @@
+{
+  "best_model_chunk": 1,
+  "best_accuracy": 0.71,
+  "best_f1": 0.30952380952380953,
+  "total_models_trained": 23,
+  "summary": {
+    "best_accuracy": 0.71,
+    "worst_accuracy": 0.616904761904762,
+    "avg_accuracy": 0.647521433039713,
+    "best_f1": 0.3238993710691824,
+    "worst_f1": 0.26519337016574585,
+    "avg_f1": 0.30170831020625777,
+    "improvements_count": 1,
+    "local_only_count": 22
+  },
+  "recommendation": "Review"
+}

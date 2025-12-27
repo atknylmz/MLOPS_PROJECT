@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+mlruns/
+mlflow.db
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+
+# Allow artifacts for tracking best models
+!artifacts/reports/
+!artifacts/incremental_models/
+artifacts/**/*.joblib
